@@ -1,0 +1,79 @@
+name: CI Billetterie Intelligente
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  backend-tests:
+    name: Backend Tests Jest
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Checkout du depot
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Installation des dependances
+        run: npm ci
+
+      - name: Execution des tests Jest
+        run: npm test -- --forceExit --ci --testTimeout=30000
+        env:
+          NODE_ENV: test
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          MONGODB_URI: ${{ secrets.MONGO_URI_TEST }}
+          PORT: 5000
+          SUBSCRIPTION_SERVICE_URL: http://localhost:5001
+          FRONTEND_URL: http://localhost:5173
+
+  frontend-build:
+    name: Frontend Build Vite
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Checkout du depot
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Installation des dependances
+        run: npm ci
+
+      - name: Build Vite production
+        run: npm run build
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+
+      - name: Verification du build dist
+        run: |
+          if [ ! -d "dist" ] || [ -z "$(ls -A dist)" ]; then
+            echo "ERREUR : le dossier dist/ est absent ou vide!"
+            exit 1
+          fi
+          echo "Build reussi"
+          ls -la dist/

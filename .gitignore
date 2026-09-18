@@ -1,0 +1,40 @@
+# ============================================================
+# .gitignore — Billetterie Intelligente (Racine du projet)
+# ============================================================
+
+# ── Dépendances ──────────────────────────────────────────────
+node_modules/
+**/node_modules/
+
+# ── Variables d'environnement (SECRETS) ─────────────────────
+.env
+**/.env
+!**/.env.example
+
+# ── Build Frontend ────────────────────────────────────────────
+frontend/dist/
+frontend/.vite/
+
+# ── Logs ─────────────────────────────────────────────────────
+*.log
+logs/
+**/logs/
+
+# ── Uploads et fichiers générés ──────────────────────────────
+backend/uploads/
+**/uploads/
+
+# ── Couverture de tests ───────────────────────────────────────
+coverage/
+**/coverage/
+
+# ── OS & éditeurs ────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+*.swo
+
+# ── Données temporaires ───────────────────────────────────────
+tmp/
+.tmp/

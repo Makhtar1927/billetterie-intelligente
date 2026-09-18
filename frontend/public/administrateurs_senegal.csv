@@ -1,0 +1,11 @@
+nom,prenom,email,telephone,role,statut
+Fall,Abdoulaye,abdoulaye.fall.admin@example.sn,+221771000001,Administrateur,Inactif
+Diop,Mariama,mariama.diop.admin@example.sn,+221771000002,Administrateur,Inactif
+Ndiaye,Cheikh,cheikh.ndiaye.admin@example.sn,+221771000003,Administrateur,Inactif
+Sy,Fatou,fatou.sy.admin@example.sn,+221771000004,Administrateur,Inactif
+Gaye,Ibrahima,ibrahima.gaye.admin@example.sn,+221771000005,Administrateur,Inactif
+Toure,Aissatou,aissatou.toure.admin@example.sn,+221771000006,Administrateur,Inactif
+Cisse,Ousmane,ousmane.cisse.admin@example.sn,+221771000007,Administrateur,Inactif
+Diallo,Khady,khady.diallo.admin@example.sn,+221771000008,Administrateur,Inactif
+Sow,Moussa,moussa.sow.admin@example.sn,+221771000009,Administrateur,Inactif
+Ba,Aminata,aminata.ba.admin@example.sn,+221771000010,Administrateur,Inactif
