@@ -205,14 +205,9 @@ exports.updateStatus = async (req, res) => {
     }
 
     if (statut === 'supprime') {
-      const user = await User.findByIdAndUpdate(
-        req.params.id,
-        { statut: 'supprime' },
-        { new: true }
-      ).select('-motDePasse');
-
+      const user = await User.findByIdAndDelete(req.params.id);
       if (!user) return res.status(404).json({ success: false, message: 'Utilisateur introuvable.' });
-      return res.json({ success: true, data: user, message: 'Utilisateur marqué comme supprimé.' });
+      return res.json({ success: true, data: user, message: 'Utilisateur supprimé définitivement.' });
     }
 
     const user = await User.findByIdAndUpdate(
@@ -237,8 +232,8 @@ exports.bulkAction = async (req, res) => {
     if (!ids?.length) return res.status(400).json({ success: false, message: 'Aucun ID fourni.' });
 
     if (action === 'supprimer') {
-      const result = await User.updateMany({ _id: { $in: ids } }, { statut: 'supprime' });
-      return res.json({ success: true, message: `${result.modifiedCount} utilisateur(s) marqué(s) comme supprimé(s).` });
+      const result = await User.deleteMany({ _id: { $in: ids } });
+      return res.json({ success: true, message: `${result.deletedCount} utilisateur(s) supprimé(s) définitivement.` });
     }
 
     let statut;

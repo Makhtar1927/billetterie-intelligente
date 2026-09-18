@@ -23,9 +23,11 @@ if (!fs.existsSync(backendUploadsPath)) {
   fs.mkdirSync(backendUploadsPath, { recursive: true });
 }
 
-// Connexion à la base de données
-const connectDB = require('./config/db');
-connectDB();
+// Connexion à la base de données (sauf en environnement de test)
+if (process.env.NODE_ENV !== 'test') {
+  const connectDB = require('./config/db');
+  connectDB();
+}
 
 const logger = require('./utils/logger');
 

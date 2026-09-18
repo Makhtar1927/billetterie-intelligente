@@ -14,17 +14,17 @@
  * ============================================================
  */
 
-const request = require('supertest');
-const jwt     = require('jsonwebtoken');
-const app     = require('../server');
-
-// ── Mocks ────────────────────────────────────────────────────
+// ── Mocks (doivent être définis avant d'importer le serveur) ─────
 jest.mock('../models/User');
 jest.mock('../config/db', () => jest.fn());
 jest.mock('../services/emailService', () => ({
   sendActivationEmail: jest.fn().mockResolvedValue(true),
   sendWelcomeEmail:    jest.fn().mockResolvedValue(true),
 }));
+
+const request = require('supertest');
+const jwt     = require('jsonwebtoken');
+const app     = require('../server');
 
 const User = require('../models/User');
 

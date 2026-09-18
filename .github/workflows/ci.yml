@@ -36,8 +36,8 @@ jobs:
         run: npm test -- --forceExit --ci --testTimeout=30000
         env:
           NODE_ENV: test
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          MONGODB_URI: ${{ secrets.MONGO_URI_TEST }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET || 'billetterie_jwt_secret_key_2024_super_secure' }}
+          MONGODB_URI: ${{ secrets.MONGO_URI_TEST || 'mongodb://127.0.0.1:27017/test_db' }}
           PORT: 5000
           SUBSCRIPTION_SERVICE_URL: http://localhost:5001
           FRONTEND_URL: http://localhost:5173
