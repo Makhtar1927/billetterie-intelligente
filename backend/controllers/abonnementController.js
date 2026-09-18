@@ -5,7 +5,7 @@ const SUBSCRIPTION_SERVICE_URL = process.env.SUBSCRIPTION_SERVICE_URL || 'https:
 
 const handleError = (err, res) => {
   if (err.response) {
-    return res.status(err.response.status).json(err.response.);
+    return res.status(err.response.status).json(err.response.add);
   }
   res.status(500).json({ success: false, message: err.message });
 };
