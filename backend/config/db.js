@@ -1,9 +1,14 @@
 const mongoose = require('mongoose');
 
 const connectDB = async (retries = 5, delay = 3000) => {
+  const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI;
+  if (!mongoUri) {
+    console.error('❌ MONGODB_URI ou MONGO_URI non défini dans les variables d\'environnement.');
+    process.exit(1);
+  }
   for (let i = 1; i <= retries; i++) {
     try {
-      const conn = await mongoose.connect(process.env.MONGODB_URI, {
+      const conn = await mongoose.connect(mongoUri, {
         serverSelectionTimeoutMS: 25000,
         socketTimeoutMS: 45000,
       });

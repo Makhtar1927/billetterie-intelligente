@@ -8,9 +8,9 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const seedDB = async () => {
   try {
-    const mongoUri = process.env.MONGODB_URI;
+    const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI;
     if (!mongoUri) {
-      throw new Error('MONGODB_URI n\'est pas défini dans le fichier .env');
+      throw new Error('MONGODB_URI ou MONGO_URI n\'est pas défini dans les variables d\'environnement');
     }
 
     console.log('⏳ Connexion à MongoDB...');
