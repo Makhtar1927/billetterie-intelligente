@@ -51,8 +51,8 @@ Historique de validation
 
 ## 3. Informations d'Hébergement et d'Environnement
 
-- **URL Backend de production** : `À compléter selon la plateforme choisie (ex: https://billetterie-api.onrender.com)`
-- **URL Frontend de production** : `À compléter selon la plateforme choisie (ex: https://billetterie.vercel.app)`
-- **Plateforme Backend** : Render / Railway / VPS
-- **Plateforme Frontend** : Vercel / Netlify
+- **URL Backend de production** : `https://billetterie-backend-8l7r.onrender.com`
+- **URL Frontend de production** : `https://billetterie-frontend.vercel.app`
+- **Plateforme Backend** : Render (Docker runtime)
+- **Plateforme Frontend** : Vercel (Vite SPA)
 - **Base de données** : MongoDB Atlas (Production) / Docker Mongo 7 (Local)
